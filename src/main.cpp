@@ -1,4 +1,5 @@
 #include "modules/clock.h"
+#include "ui/clock.h"
 #include <chrono>
 #include <string>
 #include <ftxui/component/component.hpp>
@@ -10,6 +11,7 @@ using namespace ftxui;
 
 int main() {
     dsh::Clock clock{};
+    dsh::ClockUI clockUI{clock};
 
     auto screen = ScreenInteractive::Fullscreen();
 
@@ -26,10 +28,7 @@ int main() {
         return vbox({
             text(" D-SH Dashboard ") | bold | color(Color::Blue) | border,
             separator(),
-            hbox({
-                text(" Current time: ") | color(Color::White),
-                text(" " + clock.get_time() + " ") | color(Color::Green) | bold,
-            }),
+            clockUI.render(),
             separator(),
             text(" [q] Close app") | dim,
         }) | border;
