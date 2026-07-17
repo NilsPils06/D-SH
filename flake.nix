@@ -1,11 +1,12 @@
 {
-  description = "C++ Dashboard TUI Development Environment";
+  description = "D-SH Dashboard System - Build Package and Development Shell";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs }:
+  outputs =
+    { nixpkgs, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -15,20 +16,40 @@
         buildInputs = with pkgs; [
           cmake
           ninja
+          pkg-config
           gnumake
           gcc
-          pkg-config
-
+          gtest
           ftxui
-          ncurses
+        ];
+      };
+      shellHook = ''
+        echo "D-SH Dashboard Development Environment Loaded!"
+        echo "C++ Compiler: $(g++ --version | head -n 1)"
+        echo "CMake version: $(cmake --version | head -n 1)"
+      '';
 
-          gdb
+      packages.${system}.default = pkgs.stdenv.mkDerivative {
+        name = "dsh-dashboard";
+        src = ./.;
+
+        nativeBuildInputs = with pkgs; [
+          cmake
+          ninja
+          pkg-config
         ];
 
-        shellHook = ''
-          echo "🚀 Dashboard TUI Development Environment Loaded!"
-          echo "C++ Compiler: $(g++ --version | head -n 1)"
-          echo "CMake version: $(cmake --version | head -n 1)"
+        buildInputs = with pkgs; [
+          ftxui
+        ];
+
+        buildPhase = ''
+          cmake -B build -G Ninja -DCMAKE_INSTALL_PREFIX=$out
+          cmake --build build
+        '';
+
+        installPhase = ''
+          cmake --install build
         '';
       };
     };
