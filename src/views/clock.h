@@ -3,18 +3,16 @@
 
 #include <ftxui/dom/elements.hpp>
 #include "../modules/clock.h"
+#include "iview.h"
 
 using namespace ftxui;
 
 namespace dsh {
-    class ClockUI {
-        private:
-            Clock& clock;
-
+    class ClockUI : public IView {
         public:
-            ClockUI(Clock& clock_ref);
+            ClockUI(Clock& c) : IView(c) {};
 
-            Element render();
+            void render() override;
     };
 } // namespace dsh
  #endif // DSH_CLOCK_UI_H

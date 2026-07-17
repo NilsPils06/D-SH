@@ -1,6 +1,7 @@
 #ifndef DSH_CLOCK_H
 #define DSH_CLOCK_H
 
+#include "imodule.h"
 #include <atomic>
 #include <ctime>
 #include <mutex>
@@ -8,20 +9,14 @@
 #include <thread>
 
 namespace dsh {
-    class Clock {
+    class Clock : public IModule {
         private:
             std::string formatted_time;
-            std::mutex time_mutex;
-            std::thread worker_thread;
-            std::atomic<bool> running;
-
-            void update_loop();
 
         public:
-            Clock();
-            ~Clock();
+            void update() override;
+            std::string get_property(std::string key) override;
 
-            std::string get_time();
     };
 } // namespace dsh
 

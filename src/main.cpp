@@ -1,7 +1,8 @@
+#include "controller.h"
 #include "modules/clock.h"
-#include "ui/clock.h"
+#include "views/clock.h"
 #include <chrono>
-#include <string>
+#include <memory>
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/dom/elements.hpp>
@@ -10,8 +11,13 @@
 using namespace ftxui;
 
 int main() {
-    dsh::Clock clock{};
-    dsh::ClockUI clockUI{clock};
+    dsh::Controller controller{};
+
+    std::shared_ptr<dsh::Clock> clock{};
+    std::shared_ptr<dsh::ClockUI> clockUI = std::make_shared<dsh::ClockUI>(*clock);
+
+    controller.registerModule(clock);
+    controller.registerView(clockUI);
 
     auto screen = ScreenInteractive::Fullscreen();
 
@@ -28,7 +34,7 @@ int main() {
         return vbox({
             text(" D-SH Dashboard ") | bold | color(Color::Blue) | border,
             separator(),
-            clockUI.render(),
+            clockUI->get_element(),
             separator(),
             text(" [q] Close app") | dim,
         }) | border;
