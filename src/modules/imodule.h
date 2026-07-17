@@ -2,6 +2,7 @@
 #define DSH_IMODULE_H
 
 #include <mutex>
+#include <shared_mutex>
 #include <string>
 
 namespace dsh {

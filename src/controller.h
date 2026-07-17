@@ -6,6 +6,7 @@
 #include <memory>
 #include <thread>
 #include <vector>
+
 namespace dsh {
     class Controller {
         private:
@@ -25,6 +26,6 @@ namespace dsh {
 
             void stop();
     };
-}
+} // namespace dsh
 
 #endif // DSH_CONTROLLER_H

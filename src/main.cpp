@@ -13,8 +13,8 @@ using namespace ftxui;
 int main() {
     dsh::Controller controller{};
 
-    std::shared_ptr<dsh::Clock> clock{};
-    std::shared_ptr<dsh::ClockUI> clockUI = std::make_shared<dsh::ClockUI>(*clock);
+    std::shared_ptr<dsh::Clock> clock = std::make_shared<dsh::Clock>();
+    std::shared_ptr<dsh::ClockUI> clockUI = std::make_shared<dsh::ClockUI>(clock);
 
     controller.registerModule(clock);
     controller.registerView(clockUI);
@@ -23,7 +23,7 @@ int main() {
 
     std::thread refresh([&screen]() {
         while (true) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
             screen.PostEvent(Event::Custom);
         }
     });

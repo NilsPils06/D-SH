@@ -12,13 +12,15 @@ void Clock::update() {
 
     std::stringstream ss;
     ss << std::put_time(std::localtime(&now_t), "%H:%M:%S");
-    std::lock_guard<std::mutex> lock(this->property_mutex);
-    this->formatted_time = ss.str();
+    {
+        std::lock_guard<std::mutex> lock(this->property_mutex);
+        this->formatted_time = ss.str();
+    }
 }
 
 std::string Clock::get_property(std::string key) {
-    std::lock_guard<std::mutex> lock(this->property_mutex);
     if (key == "time") {
+        std::lock_guard<std::mutex> lock(this->property_mutex);
         return this->formatted_time;
     }
 
