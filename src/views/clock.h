@@ -11,7 +11,7 @@ using namespace ftxui;
 namespace dsh {
 class ClockUI : public IView {
 public:
-    ClockUI(std::shared_ptr<Clock> c) : IView(c) {};
+    ClockUI(std::shared_ptr<Clock> m) : IView(m) {};
 
     void render() override;
 };

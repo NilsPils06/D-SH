@@ -9,7 +9,7 @@ using namespace ftxui;
 namespace dsh {
 class HostInfoUI : public IView {
 public:
-    HostInfoUI(std::shared_ptr<HostInfo> c) : IView(c) {};
+    HostInfoUI(std::shared_ptr<HostInfo> m) : IView(m) {};
 
     void render() override;
 };

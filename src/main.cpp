@@ -2,24 +2,41 @@
 #include "controller.h"
 #include "modules/clock.h"
 #include "modules/host.h"
+#include "modules/uptime.h"
 #include "views/clock.h"
 #include "views/host.h"
+#include "views/uptime.h"
+#include <functional>
+#include <map>
 #include <memory>
+#include <vector>
+
+template <typename M, typename V>
+void register_component(dsh::Controller& controller) {
+    auto module = std::make_shared<M>();
+    auto view = std::make_shared<V>(module);
+    controller.register_module(module);
+    controller.register_view(view);
+}
 
 int main() {
     dsh::Controller controller{};
 
-    auto clock = std::make_shared<dsh::Clock>();
-    auto clockUI = std::make_shared<dsh::ClockUI>(clock);
+    std::map<std::string, std::function<void(dsh::Controller&)>> module_options = {
+        {"clock", [](dsh::Controller& c) { register_component<dsh::Clock, dsh::ClockUI>(c); }},
+        {"host", [](dsh::Controller& c) { register_component<dsh::HostInfo, dsh::HostInfoUI>(c); }},
+        {"uptime", [](dsh::Controller& c) { register_component<dsh::Uptime, dsh::UptimeUI>(c); }},
+    };
 
-    auto host = std::make_shared<dsh::HostInfo>();
-    auto hostUI = std::make_shared<dsh::HostInfoUI>(host);
+    // TODO add a way to specify options/config
 
-    controller.register_module(clock);
-    controller.register_view(clockUI);
-
-    controller.register_module(host);
-    controller.register_view(hostUI);
+    // temporary solution for testing
+    std::vector<std::string> options = {"clock", "host", "uptime"};
+    for (auto& option : options) {
+        if (module_options.find(option) != module_options.end()) {
+            module_options[option](controller);
+        }
+    }
 
     dsh::App app(controller);
     app.run();
