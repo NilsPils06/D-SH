@@ -15,7 +15,7 @@ namespace dsh {
 
         public:
             void update() override;
-            std::string get_property(std::string key) override;
+            PropertyValue get_property(std::string key) override;
 
     };
 } // namespace dsh

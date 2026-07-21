@@ -13,6 +13,19 @@ namespace dsh {
             std::shared_ptr<ftxui::Node> element = ftxui::text("Loading...");
             std::mutex element_mtx;
 
+            std::string get_string_property(const std::string& key) {
+                auto raw_value = this->module->get_property(key);
+
+                return std::visit([](auto&& arg) -> std::string {
+                    using T = std::decay_t<decltype(arg)>;
+                    if constexpr (std::is_same_v<T, std::string>) {
+                        return arg;
+                    } else {
+                        return std::to_string(arg);
+                    }
+                }, raw_value);
+            }
+
         public:
             IView(std::shared_ptr<IModule> m) : module(m) {};
             virtual ~IView() = default;

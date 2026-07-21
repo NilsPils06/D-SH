@@ -18,11 +18,11 @@ void Clock::update() {
     }
 }
 
-std::string Clock::get_property(std::string key) {
+PropertyValue Clock::get_property(std::string key) {
     if (key == "time") {
         std::lock_guard<std::mutex> lock(this->property_mutex);
         return this->formatted_time;
     }
 
-    return "";
+    return 0;
 }
