@@ -15,7 +15,7 @@ add_executable(d-sh ${SOURCES})
 
 target_link_libraries(d-sh PRIVATE ftxui::screen ftxui::dom ftxui::component)
 
-install(TARGETS dsh
+install(TARGETS d-sh
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
