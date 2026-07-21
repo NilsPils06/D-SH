@@ -15,6 +15,8 @@ private:
     std::string status;
 
 public:
+    Battery() : IModule(5000) {}
+
     void update() override;
     PropertyValue get_property(std::string key) override;
 };

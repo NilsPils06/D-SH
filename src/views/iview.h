@@ -59,7 +59,8 @@ protected:
     }
 
 public:
-    IView(std::shared_ptr<IModule> m) : module(m) {};
+    IView(std::shared_ptr<IModule> m) : module(m) {}
+
     virtual ~IView() = default;
     // virtual ftxui::Element render() = 0;
     virtual void render() = 0;
@@ -67,7 +68,7 @@ public:
     std::shared_ptr<ftxui::Node> get_element() {
         std::lock_guard<std::mutex> lock(this->element_mtx);
         return this->element;
-    };
+    }
 };
 } // namespace dsh
 #endif // DSH_IVIEW_H

@@ -14,6 +14,8 @@ private:
     std::string formatted_time;
 
 public:
+    Clock() : IModule() {}
+
     void update() override;
     PropertyValue get_property(std::string key) override;
 };

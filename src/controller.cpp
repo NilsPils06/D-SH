@@ -36,15 +36,17 @@ void Controller::stop() {
 }
 
 void Controller::run() {
+    const int TICK_RATE_MS = 200;
+
     while (running) {
         for (auto module : this->modules) {
-            module->update();
+            module->tick(TICK_RATE_MS);
         }
 
         for (auto view : this->views) {
             view->render();
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        std::this_thread::sleep_for(std::chrono::milliseconds(TICK_RATE_MS));
     }
 }

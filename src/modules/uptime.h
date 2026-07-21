@@ -10,6 +10,8 @@ private:
     std::string uptime_text;
 
 public:
+    Uptime() : IModule() {}
+
     void update() override;
     PropertyValue get_property(std::string key) override;
 };

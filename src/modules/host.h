@@ -10,6 +10,8 @@ private:
     utsname uts;
 
 public:
+    HostInfo() : IModule(86400) {}
+
     void update() override;
     PropertyValue get_property(std::string key) override;
 };

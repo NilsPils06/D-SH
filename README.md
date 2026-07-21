@@ -1,9 +1,8 @@
 # D-SH (DASH)
-> Please let me know if you find any issues inside this project (code, README, etc)
+> Please report any issues you find inside this project (code, README, etc)
 
-> The first (test) version was made without an internet connection so yeah...
-
-A TUI dashboard that will be able to display system info, network info, current time and more. 
+A TUI dashboard that displays some system info, current time and will display more in the future.
+*Built to be minimalistic, efficient and fast.*
 
 ## Current version (0.1)
 > This segment will not always be updated on the dev branch
