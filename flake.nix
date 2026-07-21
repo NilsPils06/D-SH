@@ -29,7 +29,7 @@
         echo "CMake version: $(cmake --version | head -n 1)"
       '';
 
-      packages.${system}.default = pkgs.stdenv.mkDerivative {
+      packages.${system}.default = pkgs.stdenv.mkDerivation {
         name = "dsh-dashboard";
         src = ./.;
 
