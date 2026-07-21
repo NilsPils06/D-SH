@@ -5,10 +5,12 @@
 
 A TUI dashboard that will be able to display system info, network info, current time and more. 
 
-## Current version (0.1.dev)
+## Current version (0.1)
 > This segment will not always be updated on the dev branch
 
 The current version shows the current time, host info, uptime and battery info. It also makes use of a config file for customization. The current time and uptime both update live. Host info contains System name and Kernel Release.
+
+The next version will feature CPU temperature, RAM usage, Load average and AMD GPU stats.
 
 ## Usage and Installation
 There are 3 main ways to use the D-SH dashboard.
