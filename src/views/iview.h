@@ -28,6 +28,36 @@ protected:
             raw_value);
     }
 
+    int get_int_property(const std::string& key) {
+        auto raw_value = this->module->get_property(key);
+
+        return std::visit(
+            [](auto&& arg) -> int {
+                using T = std::decay_t<decltype(arg)>;
+                if constexpr (std::is_same_v<T, int>) {
+                    return arg;
+                } else {
+                    return -1;
+                }
+            },
+            raw_value);
+    }
+
+    double get_double_property(const std::string& key) {
+        auto raw_value = this->module->get_property(key);
+
+        return std::visit(
+            [](auto&& arg) -> double {
+                using T = std::decay_t<decltype(arg)>;
+                if constexpr (std::is_same_v<T, double>) {
+                    return arg;
+                } else {
+                    return -1;
+                }
+            },
+            raw_value);
+    }
+
 public:
     IView(std::shared_ptr<IModule> m) : module(m) {};
     virtual ~IView() = default;
