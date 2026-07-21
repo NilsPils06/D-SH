@@ -1,7 +1,7 @@
-# D-SH (DASH)
+# D-SH (pronounced DASH)
 > Please report any issues you find inside this project (code, README, etc)
 
-A TUI dashboard that displays some system info, current time and will display more in the future.
+A TUI dashboard (using FTXUI) that displays some system info, current time and will display more in the future.
 *Built to be minimalistic, efficient and fast.*
 
 ## Current version (0.1)
@@ -15,7 +15,7 @@ The next version will feature CPU temperature, RAM usage, Load average and AMD G
 There are 3 main ways to use the D-SH dashboard.
 
 ### Build and use locally
-First you need to build the project using cmake. I recommend adding a build folder before building. Then you can immediatly use the project inside the build folder.
+First you need to build the project using CMake. I recommend creating a build folder before building. Then you can immediately use the project inside the build folder.
 ```bash
 mkdir build
 cd build
@@ -25,14 +25,14 @@ make
 ```
 
 ### Install using CMake
-You can also install the dashboard on your pc by using CMake. I also recommend using a build folder for this one.
+You can also install D-SH on your pc by using CMake. A build folder is recommend.
 ```bash
 mkdir build
 cd build
 cmake ..
 sudo make install
 ```
-And then you can use d-sh everywhere.
+And then you can use D-SH everywhere.
 
 ### Install using NixOS
 You can also install the dashboard on your NixOS system inside your system flake.
