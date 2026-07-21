@@ -21,6 +21,8 @@
           gcc
           gtest
           ftxui
+
+          valgrind
         ];
       };
       shellHook = ''
