@@ -9,15 +9,14 @@
 #include <thread>
 
 namespace dsh {
-    class Clock : public IModule {
-        private:
-            std::string formatted_time;
+class Clock : public IModule {
+private:
+    std::string formatted_time;
 
-        public:
-            void update() override;
-            PropertyValue get_property(std::string key) override;
-
-    };
+public:
+    void update() override;
+    PropertyValue get_property(std::string key) override;
+};
 } // namespace dsh
 
 #endif // DSH_CLOCK_H
