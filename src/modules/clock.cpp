@@ -1,8 +1,6 @@
 #include "clock.h"
 #include <chrono>
-#include <iomanip>
 #include <mutex>
-#include <sstream>
 
 using namespace dsh;
 
@@ -10,11 +8,11 @@ void Clock::update() {
     auto now = std::chrono::system_clock::now();
     auto now_t = std::chrono::system_clock::to_time_t(now);
 
-    std::stringstream ss;
-    ss << std::put_time(std::localtime(&now_t), "%H:%M:%S");
+    char buffer[10];
+    std::strftime(buffer, sizeof(buffer), "%H:%M:%S", std::localtime(&now_t));
     {
         std::lock_guard<std::mutex> lock(this->property_mutex);
-        this->formatted_time = ss.str();
+        this->formatted_time = buffer;
     }
 }
 

@@ -28,8 +28,9 @@ void Uptime::update() {
     minutes /= 60;
     int seconds = (int)this->uptime_seconds % 60;
 
-    this->uptime_text = std::to_string(hours) + " Hours, " + std::to_string(minutes) + " Minutes, " +
-                        std::to_string(seconds) + " Seconds";
+    char buffer[64];
+    std::snprintf(buffer, sizeof(buffer), "%d Hours, %d Minutes, %d Seconds", hours, minutes, seconds);
+    this->uptime_text = buffer;
 }
 
 PropertyValue Uptime::get_property(std::string key) {
