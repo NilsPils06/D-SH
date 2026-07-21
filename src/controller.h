@@ -13,17 +13,18 @@ namespace dsh {
             std::vector<std::shared_ptr<IModule>> modules;
             std::vector<std::shared_ptr<IView>> views;
             std::thread worker;
-            bool running;
+            bool running = false;
 
             void run();
 
         public:
-            Controller();
+            Controller() = default;
             ~Controller();
 
             void registerModule(std::shared_ptr<IModule> module);
             void registerView(std::shared_ptr<IView> view);
 
+            void start();
             void stop();
     };
 } // namespace dsh

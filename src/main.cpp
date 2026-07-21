@@ -42,12 +42,15 @@ int main() {
 
     auto component = CatchEvent(renderer, [&](Event event) {
         if (event == Event::Character('q')) {
+            controller.stop();
             screen.Exit();
             return true;
         }
 
         return false;
     });
+
+    controller.start();
 
     screen.Loop(component);
 

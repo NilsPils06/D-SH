@@ -2,12 +2,8 @@
 
 using namespace dsh;
 
-Controller::Controller() : running(true) {
-    this->worker = std::thread(&Controller::run, this);
-}
-
 Controller::~Controller() {
-    running = false;
+    this->running = false;
     if (this->worker.joinable()) {
         this->worker.join();
     }
@@ -21,8 +17,16 @@ void Controller::registerView(std::shared_ptr<IView> view) {
     this->views.push_back(view);
 }
 
+void Controller::start() {
+    this->running = true;
+    this->worker = std::thread(&Controller::run, this);
+}
+
 void Controller::stop() {
     this->running = false;
+    if (this->worker.joinable()) {
+        this->worker.join();
+    }
 }
 
 void Controller::run() {
