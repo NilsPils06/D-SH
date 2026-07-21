@@ -8,7 +8,7 @@ A TUI dashboard that will be able to display system info, network info, current 
 ## Current version (0.1.dev)
 > This segment will not always be updated on the dev branch
 
-The current version shows the current time, host info, uptime and battery info. The current time and uptime both update live. Host info contains System name and Kernel Release.
+The current version shows the current time, host info, uptime and battery info. It also makes use of a config file for customization. The current time and uptime both update live. Host info contains System name and Kernel Release.
 
 ## Usage and Installation
 There are 3 main ways to use the D-SH dashboard.
@@ -58,4 +58,14 @@ You can also install the dashboard on your NixOS system inside your system flake
     };
   };
 }
+```
+
+### Config
+D-SH makes use of a config.ini file created at ~/.config/d-sh/. The current version of the config parsing makes use of a simple true/false value for every module.
+```ini
+[modules]
+clock=true
+battery=true
+uptime=false
+host=false
 ```
