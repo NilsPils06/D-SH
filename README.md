@@ -5,7 +5,7 @@
 
 A TUI dashboard that will be able to display system info, network info, current time and more. 
 
-## Current version
+## Current version (0.1.dev)
 > This segment will not always be updated on the dev branch
 
 The current version only shows the current time (live updating).
@@ -29,7 +29,7 @@ You can also install the dashboard on your pc by using CMake. I also recommend u
 mkdir build
 cd build
 cmake ..
-make install
+sudo make install
 ```
 And then you can use d-sh everywhere.
 
@@ -50,8 +50,8 @@ You can also install the dashboard on your NixOS system inside your system flake
       modules = [
         ./configuration.nix
         {
-          environmentModules.systemPackages = [
-            d-sh.packages.${pkgs.system}.default
+          environment.systemPackages = [
+            d-sh.packages."x86_64-linux".default
           ];
         }
       ];
