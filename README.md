@@ -8,7 +8,7 @@ A TUI dashboard that will be able to display system info, network info, current 
 ## Current version (0.1.dev)
 > This segment will not always be updated on the dev branch
 
-The current version only shows the current time (live updating).
+The current version shows the current time, host info and uptime. The current time and uptime both update live. Host info contain System name and Kernel Release.
 
 ## Usage and Installation
 There are 3 main ways to use the D-SH dashboard.
