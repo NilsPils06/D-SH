@@ -15,7 +15,7 @@ void CPUTempUI::render() {
         temp_color = Color::Red;
     }
 
-    this->element = vbox({text("Battery") | bold | center, separator(),
+    this->element = vbox({text("CPU Temperature") | bold | center, separator(),
                           hbox({
                               text(temp_text) | color(temp_color) | bold,
                           })}) |

@@ -7,7 +7,7 @@
 #include <variant>
 
 namespace dsh {
-using PropertyValue = std::variant<std::string, int, double>;
+using PropertyValue = std::variant<std::string, int, float>;
 
 class IModule {
 protected:

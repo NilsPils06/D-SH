@@ -11,11 +11,13 @@ The current version shows the following:
 - Current time (live updating)
 - Host info (contains System name and Kernel Release)
 - Uptime (live updating)
-- Battery info. 
+- Battery info
 - CPU temperature
+- RAM usage
+
 It also makes use of a config file for customization.
 
-The next version will feature RAM usage, Load average and AMD GPU stats.
+The next version will feature Load average and AMD GPU stats.
 
 ## Usage and Installation
 There are 3 main ways to use the D-SH dashboard.
@@ -76,4 +78,5 @@ battery=true
 uptime=false
 host=false
 temp=true
+ram=true
 ```

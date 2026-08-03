@@ -43,13 +43,13 @@ protected:
             raw_value);
     }
 
-    double get_double_property(const std::string& key) {
+    float get_float_property(const std::string& key) {
         auto raw_value = this->module->get_property(key);
 
         return std::visit(
-            [](auto&& arg) -> double {
+            [](auto&& arg) -> float {
                 using T = std::decay_t<decltype(arg)>;
-                if constexpr (std::is_same_v<T, double>) {
+                if constexpr (std::is_same_v<T, float>) {
                     return arg;
                 } else {
                     return -1;

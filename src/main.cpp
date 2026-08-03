@@ -4,11 +4,13 @@
 #include "modules/clock.h"
 #include "modules/cputemp.h"
 #include "modules/host.h"
+#include "modules/ram.h"
 #include "modules/uptime.h"
 #include "views/battery.h"
 #include "views/clock.h"
 #include "views/cputemp.h"
 #include "views/host.h"
+#include "views/ram.h"
 #include "views/uptime.h"
 #include <filesystem>
 #include <fstream>
@@ -67,6 +69,7 @@ std::vector<std::string> parse_config() {
                 out_file << "uptime=false\n";
                 out_file << "host=false\n";
                 out_file << "temp=true\n";
+                out_file << "ram=true\n";
                 out_file.close();
             }
         }
@@ -101,6 +104,7 @@ int main() {
         {"uptime", [](dsh::Controller& c) { register_component<dsh::Uptime, dsh::UptimeUI>(c); }},
         {"battery", [](dsh::Controller& c) { register_component<dsh::Battery, dsh::BatteryUI>(c); }},
         {"temp", [](dsh::Controller& c) { register_component<dsh::CPUTemp, dsh::CPUTempUI>(c); }},
+        {"ram", [](dsh::Controller& c) { register_component<dsh::RAMUsage, dsh::RAMUsageUI>(c); }},
     };
 
     std::vector<std::string> options = parse_config();
