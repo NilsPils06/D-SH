@@ -7,9 +7,15 @@ A TUI dashboard (using FTXUI) that displays some system info, current time and w
 ## Current version (0.1)
 > This segment will not always be updated on the dev branch
 
-The current version shows the current time, host info, uptime and battery info. It also makes use of a config file for customization. The current time and uptime both update live. Host info contains System name and Kernel Release.
+The current version shows the following:
+- Current time (live updating)
+- Host info (contains System name and Kernel Release)
+- Uptime (live updating)
+- Battery info. 
+- CPU temperature
+It also makes use of a config file for customization.
 
-The next version will feature CPU temperature, RAM usage, Load average and AMD GPU stats.
+The next version will feature RAM usage, Load average and AMD GPU stats.
 
 ## Usage and Installation
 There are 3 main ways to use the D-SH dashboard.
@@ -69,4 +75,5 @@ clock=true
 battery=true
 uptime=false
 host=false
+temp=true
 ```
