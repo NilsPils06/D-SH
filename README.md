@@ -4,7 +4,7 @@
 A TUI dashboard (using FTXUI) that displays some system info, current time and will display more in the future.
 *Built to be minimalistic, efficient and fast.*
 
-## Current version (0.1)
+## Current version (0.1.1)
 > This segment will not always be updated on the dev branch
 
 The current version shows the following:
